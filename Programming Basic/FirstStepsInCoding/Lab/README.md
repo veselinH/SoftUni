@@ -1,1 +1,0 @@
-One little step into the world of programming.
