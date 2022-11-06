@@ -25,10 +25,32 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         seedData();
-        printAllBooksAfter2000(2000);
+        // TODO: Uncomment the query you want to commit.
+//        printAllBooksAfterYear(2000);
+//        printAllAuthorsNamesWithBooksWithReleaseDateBeforeYear(1990);
+//        printAllAuthorsAndNumberOfTheirBooks();
+//        printAllBooksByAuthorNameOrderByReleaseDate("George", "Powell");
     }
 
-    private void printAllBooksAfter2000(int year) {
+    private void printAllBooksByAuthorNameOrderByReleaseDate(String firstName, String lastName) {
+        bookService
+                .findAllBooksByAuthorFirstAndLastNameOrderByReleaseDate(firstName, lastName)
+                .forEach(System.out::println);
+    }
+
+    private void printAllAuthorsAndNumberOfTheirBooks() {
+        authorService
+                .getAllAuthorsOrderByCountOfTheirBooks()
+                .forEach(System.out::println);
+    }
+
+    private void printAllAuthorsNamesWithBooksWithReleaseDateBeforeYear(int year) {
+        bookService
+                .findAllAuthorsWithBooksWithReleaseDateBeforeYear(year)
+                .forEach(System.out::println);
+    }
+
+    private void printAllBooksAfterYear(int year) {
         bookService
                 .findAllBooksAfterYear(year)
                 .stream()

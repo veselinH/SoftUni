@@ -1,8 +1,8 @@
 package bg.softuni.bookshopsystem.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "authors")
@@ -10,8 +10,10 @@ public class Author extends BaseEntity{
 
     private String firstName;
     private String lastName;
+    private Set<Book> book;
 
     public Author() {
+        book = new HashSet<>();
     }
 
     public Author(String firstName, String lastName) {
@@ -35,5 +37,14 @@ public class Author extends BaseEntity{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
+    public Set<Book> getBook() {
+        return book;
+    }
+
+    public void setBook(Set<Book> book) {
+        this.book = book;
     }
 }

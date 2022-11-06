@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+
+import static bg.softuni.bookshopsystem.service.impl.FilePaths.AUTHORS_FILE_PATH;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
-
-    private static final String AUTHORS_FILE_PATH = "src/main/resources/files/authors.txt";
     private final AuthorRepository authorRepository;
 
     public AuthorServiceImpl(AuthorRepository authorRepository) {
@@ -46,5 +48,17 @@ public class AuthorServiceImpl implements AuthorService {
         return authorRepository
                 .findById(randomID)
                 .orElse(null);
+    }
+
+    @Override
+    public List<String> getAllAuthorsOrderByCountOfTheirBooks() {
+        return authorRepository
+                .findAllByBooksSizeDESC()
+                .stream()
+                .map(author -> String.format("%s %s %d",
+                        author.getFirstName(),
+                        author.getLastName(),
+                        author.getBook().size()))
+                .collect(Collectors.toList());
     }
 }

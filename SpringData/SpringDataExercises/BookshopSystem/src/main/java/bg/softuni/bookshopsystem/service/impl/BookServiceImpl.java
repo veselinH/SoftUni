@@ -22,10 +22,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static bg.softuni.bookshopsystem.service.impl.FilePaths.BOOKS_FILE_PATH;
+
 @Service
 public class BookServiceImpl implements BookService {
 
-    private static final String BOOKS_FILE_PATH = "src/main/resources/files/books.txt";
+
     private final BookRepository bookRepository;
     private final AuthorService authorService;
     private final CategoryService categoryService;
@@ -38,13 +40,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void seedBooks() throws IOException {
-        if (bookRepository.count() > 0){
+        if (bookRepository.count() > 0) {
             return;
         }
 
         Files
                 .readAllLines(Path.of(BOOKS_FILE_PATH))
-                .forEach(row ->{
+                .forEach(row -> {
                     String[] bookData = row.split("\\s+");
                     Book book = createBookFromData(bookData);
                     bookRepository.save(book);
@@ -56,6 +58,29 @@ public class BookServiceImpl implements BookService {
     public List<Book> findAllBooksAfterYear(int year) {
 
         return bookRepository.findAllByReleaseDateAfter(LocalDate.of(year, 12, 31));
+    }
+
+    @Override
+    public List<String> findAllAuthorsWithBooksWithReleaseDateBeforeYear(int year) {
+        return bookRepository
+                .findAllByReleaseDateBefore(LocalDate.of(year, 1, 1))
+                .stream()
+                .map(book -> String.format("%s %s", book.getAuthor().getFirstName()
+                        , book.getAuthor().getLastName()))
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllBooksByAuthorFirstAndLastNameOrderByReleaseDate(String firstName, String lastName) {
+        return bookRepository
+                .findAllByAuthor_FirstNameAndAuthor_LastNameOrderByReleaseDateDescTitle(firstName, lastName)
+                .stream()
+                .map(book -> String.format("%s %s %d",
+                        book.getTitle(),
+                        book.getReleaseDate(),
+                        book.getCopies()))
+                .collect(Collectors.toList());
     }
 
     private Book createBookFromData(String[] bookData) {

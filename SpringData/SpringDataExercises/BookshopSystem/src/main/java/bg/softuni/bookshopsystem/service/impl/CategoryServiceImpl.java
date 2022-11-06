@@ -14,10 +14,10 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
+import static bg.softuni.bookshopsystem.service.impl.FilePaths.CATEGORIES_FILE_PATH;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
-
-    private static final String CATEGORIES_FILE_PATH = "src/main/resources/files/categories.txt";
 
     private final CategoryRepository categoryRepository;
 
