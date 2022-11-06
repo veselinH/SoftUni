@@ -1,5 +1,6 @@
 package bg.softuni.bookshopsystem;
 
+import bg.softuni.bookshopsystem.model.entity.Book;
 import bg.softuni.bookshopsystem.service.AuthorService;
 import bg.softuni.bookshopsystem.service.BookService;
 import bg.softuni.bookshopsystem.service.CategoryService;
@@ -24,6 +25,15 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         seedData();
+        printAllBooksAfter2000(2000);
+    }
+
+    private void printAllBooksAfter2000(int year) {
+        bookService
+                .findAllBooksAfterYear(year)
+                .stream()
+                .map(Book::getTitle)
+                .forEach(System.out::println);
     }
 
     private void seedData() throws IOException {
