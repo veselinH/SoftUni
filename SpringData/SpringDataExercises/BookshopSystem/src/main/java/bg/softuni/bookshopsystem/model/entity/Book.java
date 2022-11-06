@@ -27,6 +27,17 @@ public class Book extends BaseEntity {
         category = new HashSet<>();
     }
 
+    public Book(EditionType editionType, LocalDate releaseDate, Integer copies, BigDecimal price, AgeRestriction ageRestriction, String title, Author author, Set<Category> categories) {
+        this.editionType = editionType;
+        this.releaseDate = releaseDate;
+        this.copies = copies;
+        this.price = price;
+        this.ageRestriction = ageRestriction;
+        this.title = title;
+        this.author = author;
+        this.category = categories;
+    }
+
     @Column(name = "title", nullable = false, length = 50)
     public String getTitle() {
         return title;
