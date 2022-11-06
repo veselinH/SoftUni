@@ -1,7 +1,7 @@
 package bg.softuni.bookshopsystem.model.entity;
 
-import bg.softuni.bookshopsystem.model.Enumerations.AgeRestriction;
-import bg.softuni.bookshopsystem.model.Enumerations.EditionType;
+import bg.softuni.bookshopsystem.model.enums.AgeRestriction;
+import bg.softuni.bookshopsystem.model.enums.EditionType;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

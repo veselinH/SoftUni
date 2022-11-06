@@ -1,7 +1,8 @@
-package bg.softuni.bookshopsystem.service;
+package bg.softuni.bookshopsystem.service.impl;
 
 import bg.softuni.bookshopsystem.model.entity.Category;
 import bg.softuni.bookshopsystem.repository.CategoryRepository;
+import bg.softuni.bookshopsystem.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
