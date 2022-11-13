@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long> {
-    @Query("SELECT a FROM Author a ORDER BY a.book.size DESC")
+    @Query("SELECT a FROM Author a ORDER BY size(a.book) DESC")
     List<Author> findAllByBooksSizeDESC();
 }
