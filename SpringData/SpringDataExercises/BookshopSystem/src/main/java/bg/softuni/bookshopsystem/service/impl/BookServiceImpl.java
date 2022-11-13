@@ -83,6 +83,89 @@ public class BookServiceImpl implements BookService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<String> findAllByAgeRestriction(AgeRestriction ageRestriction) {
+        return bookRepository.findAllByAgeRestriction(ageRestriction)
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllBooksByEditionTypeAndCopies(EditionType editionType, Integer copies) {
+        return bookRepository
+                .findAllByEditionTypeAndCopiesLessThan(editionType, copies)
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Book> findAllBooksWithPriceLowerThanAndHigherThan() {
+        return bookRepository.findAllByPriceBeforeAndPriceAfter(BigDecimal.valueOf(5), BigDecimal.valueOf(40));
+    }
+
+    @Override
+    public List<String> findNotReleasedBookTitlesInYear(int year) {
+        LocalDate lower = LocalDate.of(year, 1, 1);
+        LocalDate upper = LocalDate.of(year, 12, 31);
+        return bookRepository.findAllByReleaseDateBeforeOrReleaseDateAfter(lower, upper)
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllBooksReleasedBeforeDate(LocalDate date) {
+        return bookRepository.findAllByReleaseDateBefore(date)
+                .stream()
+                .map(book -> String.format("%s %s %.2f",
+                        book.getTitle(),
+                        book.getEditionType().name(),
+                        book.getPrice()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllByTitleContainingGivenString(String substring) {
+        return bookRepository.findAllByTitleContainingIgnoreCase(substring)
+                .stream()
+                .map(Book::getTitle)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllBooksWithAuthorsLastNameStartsWith(String substring) {
+        return bookRepository.findAllByAuthor_LastNameStartsWith(substring)
+                .stream()
+                .map(book -> String.format("%s (%s %s)",
+                        book.getTitle(),
+                        book.getAuthor().getFirstName(),
+                        book.getAuthor().getLastName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public int findCountOfAllBookWithTitleLengthMoreThan(int titleLength) {
+        return bookRepository.countOfBooksWithTitleLengthMoreThan(titleLength);
+    }
+
+    @Override
+    public void changePrice(long bookId) {
+        bookRepository
+                .changeBookPriceById(bookId);
+    }
+
+    @Override
+    public String findByBookTitle(String bookTitle) {
+        Book book = bookRepository.findByTitle(bookTitle);
+        return String.format("%s %s %s %.2f",
+                book.getTitle(),
+                book.getEditionType().name(),
+                book.getAgeRestriction().name(),
+                book.getPrice());
+    }
+
     private Book createBookFromData(String[] bookData) {
         EditionType editionType = EditionType
                 .values()[Integer.parseInt(bookData[0])];

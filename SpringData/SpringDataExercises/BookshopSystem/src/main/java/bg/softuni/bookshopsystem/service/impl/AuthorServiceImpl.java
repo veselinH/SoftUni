@@ -1,6 +1,7 @@
 package bg.softuni.bookshopsystem.service.impl;
 
 import bg.softuni.bookshopsystem.model.entity.Author;
+import bg.softuni.bookshopsystem.model.entity.Book;
 import bg.softuni.bookshopsystem.repository.AuthorRepository;
 import bg.softuni.bookshopsystem.service.AuthorService;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,32 @@ public class AuthorServiceImpl implements AuthorService {
                         author.getFirstName(),
                         author.getLastName(),
                         author.getBook().size()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllAuthorsWithFirstNameEndingWith(String substring) {
+        return authorRepository.findAllByFirstNameEndingWith(substring)
+                .stream()
+                .map(author -> String.format("%s %s",
+                        author.getFirstName(), author.getLastName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> findAllAuthorsAndTheirTotalCopies() {
+        return authorRepository
+                .findAll()
+                .stream()
+                .map(author -> String.format("%s %s - %d",
+                        author.getFirstName(),
+                        author.getLastName(),
+                        author
+                                .getBook()
+                                .stream()
+                                .map(Book::getCopies)
+                                .reduce(Integer::sum)
+                                .orElse(0)))
                 .collect(Collectors.toList());
     }
 }
