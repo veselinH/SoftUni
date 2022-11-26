@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cities")
-public class City extends BaseEntity{
+public class City extends BaseEntity {
 
     private String cityName;
     private String description;
@@ -24,7 +24,7 @@ public class City extends BaseEntity{
         this.cityName = cityName;
     }
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     public String getDescription() {
         return description;
     }
@@ -33,6 +33,7 @@ public class City extends BaseEntity{
         this.description = description;
     }
 
+    @Column
     public Integer getPopulation() {
         return population;
     }
