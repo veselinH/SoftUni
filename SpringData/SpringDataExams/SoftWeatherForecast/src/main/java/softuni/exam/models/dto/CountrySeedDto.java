@@ -1,22 +1,19 @@
-package softuni.exam.models.entity;
+package softuni.exam.models.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.util.Set;
+import com.google.gson.annotations.Expose;
 
-@Entity
-@Table(name = "countries")
-public class Country extends BaseEntity{
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+public class CountrySeedDto {
+
+    @Expose
     private String countryName;
+    @Expose
     private String currency;
 
-    public Country() {
-    }
-
-    @Column(name = "country_name", unique = true)
+    @NotNull
+    @Size(min = 2, max = 60)
     public String getCountryName() {
         return countryName;
     }
@@ -25,7 +22,8 @@ public class Country extends BaseEntity{
         this.countryName = countryName;
     }
 
-    @Column
+    @NotNull
+    @Size(min = 2, max = 20)
     public String getCurrency() {
         return currency;
     }
@@ -33,5 +31,4 @@ public class Country extends BaseEntity{
     public void setCurrency(String currency) {
         this.currency = currency;
     }
-
 }
