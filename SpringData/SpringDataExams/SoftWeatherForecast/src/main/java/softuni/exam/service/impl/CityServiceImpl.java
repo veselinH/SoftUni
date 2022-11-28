@@ -72,4 +72,10 @@ public class CityServiceImpl implements CityService {
 
         return sb.toString().trim();
     }
+
+    @Override
+    public City findCityById(Long id) {
+        return cityRepository.findById(id)
+                .orElse(null);
+    }
 }

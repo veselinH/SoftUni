@@ -29,7 +29,7 @@ public class Forecast extends BaseEntity {
         this.dayOfWeek = dayOfWeek;
     }
 
-    @Column(name = "max_temperature")
+    @Column(name = "max_temperature", scale = 2)
     public Double getMaxTemperature() {
         return maxTemperature;
     }
@@ -38,7 +38,7 @@ public class Forecast extends BaseEntity {
         this.maxTemperature = maxTemperature;
     }
 
-    @Column(name = "min_temperature")
+    @Column(name = "min_temperature", scale = 2)
     public Double getMinTemperature() {
         return minTemperature;
     }

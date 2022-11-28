@@ -1,7 +1,12 @@
 package softuni.exam.service;
 
+import softuni.exam.models.entity.Forecast;
+import softuni.exam.models.entity.enums.Day;
+
+import javax.swing.text.html.Option;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.util.Optional;
 
 
 public interface ForecastService {
@@ -13,4 +18,6 @@ public interface ForecastService {
 	String importForecasts() throws IOException, JAXBException;
 
     String exportForecasts();
+
+    Optional<Forecast> findForecastByDayAndCityId(Day day, Long id);
 }
