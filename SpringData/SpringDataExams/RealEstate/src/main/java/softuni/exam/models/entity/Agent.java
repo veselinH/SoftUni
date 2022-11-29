@@ -33,7 +33,7 @@ public class Agent extends BaseEntity{
         this.lastName = lastName;
     }
 
-    @Column
+    @Column(unique = true)
     public String getEmail() {
         return email;
     }

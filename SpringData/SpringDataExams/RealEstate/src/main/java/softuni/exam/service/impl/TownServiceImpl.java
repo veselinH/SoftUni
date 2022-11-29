@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Optional;
 
 @Service
 public class TownServiceImpl implements TownService {
@@ -65,4 +66,12 @@ public class TownServiceImpl implements TownService {
 
         return sb.toString().trim();
     }
+
+    @Override
+    public Town findTownByName(String townName) {
+        return townRepository.findByTownName(townName)
+                .orElse(null);
+    }
+
+
 }

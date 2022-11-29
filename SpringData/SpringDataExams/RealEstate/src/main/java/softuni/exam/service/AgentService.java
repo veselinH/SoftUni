@@ -1,7 +1,10 @@
 package softuni.exam.service;
 
 
+import softuni.exam.models.entity.Agent;
+
 import java.io.IOException;
+import java.util.Optional;
 
 public interface AgentService {
 
@@ -10,4 +13,6 @@ public interface AgentService {
     String readAgentsFromFile() throws IOException;
 	
 	String importAgents() throws IOException;
+
+    Agent findAgentByFirstName(String agentFirstName);
 }
