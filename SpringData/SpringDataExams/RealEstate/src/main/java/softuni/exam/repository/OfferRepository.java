@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long> {
 
-    List<Offer> findAllByApartment_ApartmentTypeOrderByApartment_AreaDesc(ApartmentType apartmentType);
+    List<Offer> findAllByApartment_ApartmentTypeOrderByApartment_AreaDescPriceAsc(ApartmentType apartmentType);
 
 }

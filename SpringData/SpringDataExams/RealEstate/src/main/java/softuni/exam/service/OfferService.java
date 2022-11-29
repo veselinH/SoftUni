@@ -17,5 +17,5 @@ public interface OfferService {
 
     String exportOffers();
 
-    List<String> findAllOffersByApartmentTypeOrderedByApartmentArea(ApartmentType apartmentType);
+    List<String> findAllOffersByApartmentTypeOrderedByApartmentAreaDescAndPriceAsc(ApartmentType apartmentType);
 }

@@ -91,18 +91,16 @@ public class OfferServiceImpl implements OfferService {
     public String exportOffers() {
         StringBuilder sb = new StringBuilder();
 
-        ApartmentType apartmentType = ApartmentType.three_rooms;
-
-        findAllOffersByApartmentTypeOrderedByApartmentArea(apartmentType)
+        findAllOffersByApartmentTypeOrderedByApartmentAreaDescAndPriceAsc(ApartmentType.three_rooms)
                 .forEach(sb::append);
 
         return sb.toString().trim();
     }
 
     @Override
-    public List<String> findAllOffersByApartmentTypeOrderedByApartmentArea(ApartmentType apartmentType) {
+    public List<String> findAllOffersByApartmentTypeOrderedByApartmentAreaDescAndPriceAsc(ApartmentType apartmentType) {
         return offerRepository
-                .findAllByApartment_ApartmentTypeOrderByApartment_AreaDesc(apartmentType)
+                .findAllByApartment_ApartmentTypeOrderByApartment_AreaDescPriceAsc(apartmentType)
                 .stream()
                 .map(offer -> String.format("Agent %s %s with offer №%d:\n" +
                                 "   \t\t-Apartment area: %.2f\n" +
