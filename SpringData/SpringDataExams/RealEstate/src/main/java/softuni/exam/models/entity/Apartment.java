@@ -2,21 +2,21 @@ package softuni.exam.models.entity;
 
 import softuni.exam.models.entity.enums.ApartmentType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "apartments")
-public class Apartment extends BaseEntity{
+public class Apartment extends BaseEntity {
 
     private ApartmentType apartmentType;
     private Double area;
+    private Town town;
 
     public Apartment() {
     }
 
     @Column(name = "apartment_type")
+    @Enumerated(EnumType.STRING)
     public ApartmentType getApartmentType() {
         return apartmentType;
     }
@@ -32,5 +32,14 @@ public class Apartment extends BaseEntity{
 
     public void setArea(Double area) {
         this.area = area;
+    }
+
+    @OneToOne
+    public Town getTown() {
+        return town;
+    }
+
+    public void setTown(Town town) {
+        this.town = town;
     }
 }

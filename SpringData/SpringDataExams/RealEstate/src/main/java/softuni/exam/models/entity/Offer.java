@@ -1,8 +1,6 @@
 package softuni.exam.models.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,6 +11,8 @@ public class Offer extends BaseEntity{
 
     private BigDecimal price;
     private LocalDate publishedOn;
+    private Agent agent;
+    private Apartment apartment;
 
     public Offer() {
     }
@@ -33,5 +33,23 @@ public class Offer extends BaseEntity{
 
     public void setPublishedOn(LocalDate publishedOn) {
         this.publishedOn = publishedOn;
+    }
+
+    @ManyToOne
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
+    @ManyToOne
+    public Apartment getApartment() {
+        return apartment;
+    }
+
+    public void setApartment(Apartment apartment) {
+        this.apartment = apartment;
     }
 }

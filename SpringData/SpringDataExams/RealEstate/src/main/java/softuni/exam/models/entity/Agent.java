@@ -2,6 +2,7 @@ package softuni.exam.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +12,7 @@ public class Agent extends BaseEntity{
     private String firstName;
     private String lastName;
     private String email;
+    private Town town;
 
     public Agent() {
     }
@@ -40,5 +42,14 @@ public class Agent extends BaseEntity{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @OneToOne
+    public Town getTown() {
+        return town;
+    }
+
+    public void setTown(Town town) {
+        this.town = town;
     }
 }
