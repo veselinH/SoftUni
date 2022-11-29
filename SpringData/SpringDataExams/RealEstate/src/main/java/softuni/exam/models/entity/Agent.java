@@ -1,9 +1,6 @@
 package softuni.exam.models.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "agents")
@@ -13,6 +10,7 @@ public class Agent extends BaseEntity{
     private String lastName;
     private String email;
     private Town town;
+
 
     public Agent() {
     }
@@ -44,7 +42,7 @@ public class Agent extends BaseEntity{
         this.email = email;
     }
 
-    @OneToOne
+    @ManyToOne
     public Town getTown() {
         return town;
     }

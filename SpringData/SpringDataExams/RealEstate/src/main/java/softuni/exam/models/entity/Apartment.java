@@ -12,6 +12,7 @@ public class Apartment extends BaseEntity {
     private Double area;
     private Town town;
 
+
     public Apartment() {
     }
 
@@ -34,7 +35,7 @@ public class Apartment extends BaseEntity {
         this.area = area;
     }
 
-    @OneToOne
+    @ManyToOne
     public Town getTown() {
         return town;
     }
