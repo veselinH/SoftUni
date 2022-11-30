@@ -2,6 +2,7 @@ package com.example.football.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,11 +13,12 @@ public class Team extends BaseEntity{
     private String stadiumName;
     private Integer fanBase;
     private String history;
+    private Town town;
 
     public Team() {
     }
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     public String getName() {
         return name;
     }
@@ -25,7 +27,7 @@ public class Team extends BaseEntity{
         this.name = name;
     }
 
-    @Column(name = "stadium_name")
+    @Column(name = "stadium_name", nullable = false)
     public String getStadiumName() {
         return stadiumName;
     }
@@ -34,7 +36,7 @@ public class Team extends BaseEntity{
         this.stadiumName = stadiumName;
     }
 
-    @Column(name = "fan_base")
+    @Column(name = "fan_base", nullable = false)
     public Integer getFanBase() {
         return fanBase;
     }
@@ -43,12 +45,21 @@ public class Team extends BaseEntity{
         this.fanBase = fanBase;
     }
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     public String getHistory() {
         return history;
     }
 
     public void setHistory(String history) {
         this.history = history;
+    }
+
+    @ManyToOne
+    public Town getTown() {
+        return town;
+    }
+
+    public void setTown(Town town) {
+        this.town = town;
     }
 }

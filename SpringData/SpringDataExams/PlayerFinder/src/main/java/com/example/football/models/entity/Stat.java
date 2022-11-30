@@ -6,39 +6,39 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "stats")
-public class Stat extends BaseEntity{
+public class Stat extends BaseEntity {
 
-    private Double shooting;
-    private Double passing;
-    private Double endurance;
+    private Float shooting;
+    private Float passing;
+    private Float endurance;
 
     public Stat() {
     }
 
-    @Column
-    public Double getShooting() {
+    @Column(nullable = false)
+    public Float getShooting() {
         return shooting;
     }
 
-    public void setShooting(Double shooting) {
+    public void setShooting(Float shooting) {
         this.shooting = shooting;
     }
 
-    @Column
-    public Double getPassing() {
+    @Column(nullable = false)
+    public Float getPassing() {
         return passing;
     }
 
-    public void setPassing(Double passing) {
+    public void setPassing(Float passing) {
         this.passing = passing;
     }
 
-    @Column
-    public Double getEndurance() {
+    @Column(nullable = false)
+    public Float getEndurance() {
         return endurance;
     }
 
-    public void setEndurance(Double endurance) {
+    public void setEndurance(Float endurance) {
         this.endurance = endurance;
     }
 }

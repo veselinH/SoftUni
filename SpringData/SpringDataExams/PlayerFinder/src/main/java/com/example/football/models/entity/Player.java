@@ -14,11 +14,14 @@ public class Player extends BaseEntity{
     private String email;
     private LocalDate birthdate;
     private Position position;
+    private Stat stat;
+    private Team team;
+    private Town town;
 
     public Player() {
     }
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -27,7 +30,7 @@ public class Player extends BaseEntity{
         this.firstName = firstName;
     }
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -36,7 +39,7 @@ public class Player extends BaseEntity{
         this.lastName = lastName;
     }
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     public String getEmail() {
         return email;
     }
@@ -45,7 +48,7 @@ public class Player extends BaseEntity{
         this.email = email;
     }
 
-    @Column
+    @Column(nullable = false)
     public LocalDate getBirthdate() {
         return birthdate;
     }
@@ -54,13 +57,40 @@ public class Player extends BaseEntity{
         this.birthdate = birthdate;
     }
 
-    @Column
-    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     public Position getPosition() {
         return position;
     }
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @OneToOne
+    public Stat getStat() {
+        return stat;
+    }
+
+    public void setStat(Stat stat) {
+        this.stat = stat;
+    }
+
+    @ManyToOne
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    @ManyToOne
+    public Town getTown() {
+        return town;
+    }
+
+    public void setTown(Town town) {
+        this.town = town;
     }
 }
