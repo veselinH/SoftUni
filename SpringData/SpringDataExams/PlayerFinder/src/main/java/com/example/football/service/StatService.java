@@ -1,11 +1,20 @@
 package com.example.football.service;
 
-//ToDo - Implement all methods
+import com.example.football.models.entity.Stat;
+
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public interface StatService {
     boolean areImported();
 
-    String readStatsFileContent() ;
+    String readStatsFileContent() throws IOException;
 
-    String importStats() ;
+    String importStats() throws JAXBException, FileNotFoundException;
+
+    Stat findStatByAllProperties(Float passing, Float shooting, Float endurance);
+
+    Stat findStatById(Long id);
 
 }

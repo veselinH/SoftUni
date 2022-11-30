@@ -1,4 +1,4 @@
-package softuni.exam.util;
+package com.example.football.util;
 
 
 

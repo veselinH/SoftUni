@@ -1,9 +1,9 @@
-package softuni.exam.util.impl;
+package com.example.football.util.impl;
 
 
+import com.example.football.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import softuni.exam.util.ValidationUtil;
 
 import javax.validation.Validation;
 import javax.validation.Validator;

@@ -1,13 +1,18 @@
 package com.example.football.service;
 
 
-//ToDo - Implement all methods
+import com.example.football.models.entity.Town;
+
+import java.io.IOException;
+
 public interface TownService {
 
     boolean areImported();
 
-    String readTownsFileContent() ;
+    String readTownsFileContent() throws IOException;
 	
-	String importTowns();
+	String importTowns() throws IOException;
+
+    Town findTownByName(String townName);
 
 }

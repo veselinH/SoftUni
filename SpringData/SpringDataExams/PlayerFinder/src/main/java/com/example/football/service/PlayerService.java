@@ -1,12 +1,24 @@
 package com.example.football.service;
 
-//ToDo - Implement all methods
+import com.example.football.models.entity.Player;
+
+import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+
 public interface PlayerService {
     boolean areImported();
 
-    String readPlayersFileContent() ;
+    String readPlayersFileContent() throws IOException;
 
-    String importPlayers() ;
+    String importPlayers() throws JAXBException, FileNotFoundException;
 
     String exportBestPlayers();
+
+    Player findPlayerByEmail(String email);
+
+    List<String> findAllPlayersByBirthdateOrderedByStatShootingDescStatPassingDescStatEnduranceDescPlayerLastName();
+
+
 }

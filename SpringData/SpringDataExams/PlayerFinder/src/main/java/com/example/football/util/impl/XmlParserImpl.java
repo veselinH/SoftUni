@@ -1,7 +1,7 @@
-package softuni.exam.util.impl;
+package com.example.football.util.impl;
 
+import com.example.football.util.XmlParser;
 import org.springframework.stereotype.Component;
-import softuni.exam.util.XmlParser;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

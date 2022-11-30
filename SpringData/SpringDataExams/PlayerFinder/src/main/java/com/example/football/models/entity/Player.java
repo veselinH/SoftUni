@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "players")
-public class Player extends BaseEntity{
+public class Player extends BaseEntity {
 
     private String firstName;
     private String lastName;
@@ -92,5 +92,18 @@ public class Player extends BaseEntity{
 
     public void setTown(Town town) {
         this.town = town;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Player - %s %s\n" +
+                        "\tPosition - %s\n" +
+                        "\tTeam - %s\n" +
+                        "\tStadium - %s",
+                getFirstName(),
+                getLastName(),
+                getPosition().name(),
+                getTeam().getName(),
+                getTeam().getStadiumName());
     }
 }
