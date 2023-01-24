@@ -22,8 +22,9 @@ public class UserRole extends BaseEntity {
         return name;
     }
 
-    public void setName(Role name) {
+    public UserRole setName(Role name) {
         this.name = name;
+        return this;
     }
 
     @ManyToMany(mappedBy = "roles")

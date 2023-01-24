@@ -1,6 +1,7 @@
 package bg.softuni.mobilelele.service.impl;
 
 import bg.softuni.mobilelele.model.entity.User;
+import bg.softuni.mobilelele.model.entity.UserRole;
 import bg.softuni.mobilelele.model.service.UserLoginServiceModel;
 import bg.softuni.mobilelele.repository.UserRepository;
 import bg.softuni.mobilelele.service.UserService;
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
                         .setUsername(loggedInUser.getUsername())
                         .setFirstName(loggedInUser.getFirstName())
                         .setLastName(loggedInUser.getLastName());
+
             }
 
             return success;
