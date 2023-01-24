@@ -1,8 +1,9 @@
 package bg.softuni.mobilelele.model.entity;
 
-import bg.softuni.mobilelele.model.enums.Role;
+import bg.softuni.mobilelele.model.entity.enums.Role;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,13 +11,13 @@ import java.util.Set;
 public class UserRole extends BaseEntity {
 
     private Role name;
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
     public UserRole() {
     }
 
     @Column
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     public Role getName() {
         return name;
     }

@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,8 +12,8 @@ import java.time.LocalDateTime;
 public class Brand extends BaseEntity {
 
     private String name;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private Instant created;
+    private Instant modified;
 
     public Brand() {
     }
@@ -27,20 +28,20 @@ public class Brand extends BaseEntity {
     }
 
     @Column
-    public LocalDateTime getCreated() {
+    public Instant getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Instant created) {
         this.created = created;
     }
 
     @Column
-    public LocalDateTime getModified() {
+    public Instant getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Instant modified) {
         this.modified = modified;
     }
 }

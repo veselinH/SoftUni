@@ -2,7 +2,9 @@ package bg.softuni.mobilelele.model.entity;
 
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,12 +16,12 @@ public class User extends BaseEntity {
     private String firstName;
     private String lastName;
     private boolean isActive;
-    private Set<UserRole> roles;
+    private Set<UserRole> roles = new HashSet<>();
     private String imageUrl;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private Instant created;
+    private Instant modified;
 
-    public User() {
+    public  User(){
     }
 
     @Column(nullable = false, unique = true)
@@ -27,8 +29,9 @@ public class User extends BaseEntity {
         return username;
     }
 
-    public void setUsername(String username) {
+    public User setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     @Column
@@ -36,8 +39,9 @@ public class User extends BaseEntity {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     @Column(name = "first_name")
@@ -45,8 +49,9 @@ public class User extends BaseEntity {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public User setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     @Column(name = "last_name")
@@ -54,8 +59,9 @@ public class User extends BaseEntity {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public User setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     @Column(name = "is_active")
@@ -63,17 +69,19 @@ public class User extends BaseEntity {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public User setActive(boolean active) {
         isActive = active;
+        return this;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     public Set<UserRole> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<UserRole> roles) {
+    public User setRoles(Set<UserRole> roles) {
         this.roles = roles;
+        return this;
     }
 
     @Column(name = "image_url")
@@ -81,25 +89,28 @@ public class User extends BaseEntity {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public User setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
     }
 
     @Column
-    public LocalDateTime getCreated() {
+    public Instant getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public User setCreated(Instant created) {
         this.created = created;
+        return this;
     }
 
     @Column
-    public LocalDateTime getModified() {
+    public Instant getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public User setModified(Instant modified) {
         this.modified = modified;
+        return this;
     }
 }

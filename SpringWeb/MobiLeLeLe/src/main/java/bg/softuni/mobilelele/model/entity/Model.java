@@ -1,8 +1,9 @@
 package bg.softuni.mobilelele.model.entity;
 
-import bg.softuni.mobilelele.model.enums.Category;
+import bg.softuni.mobilelele.model.entity.enums.Category;
 import jakarta.persistence.*;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,8 +15,8 @@ public class Model extends BaseEntity{
     private String imageUrl;
     private Integer startYear;
     private Integer endYear;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private Instant created;
+    private Instant modified;
     private Brand brand;
 
     public Model() {
@@ -31,7 +32,7 @@ public class Model extends BaseEntity{
     }
 
     @Column
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     public Category getCategory() {
         return category;
     }
@@ -68,20 +69,20 @@ public class Model extends BaseEntity{
     }
 
     @Column
-    public LocalDateTime getCreated() {
+    public Instant getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Instant created) {
         this.created = created;
     }
 
     @Column
-    public LocalDateTime getModified() {
+    public Instant getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Instant modified) {
         this.modified = modified;
     }
 

@@ -1,10 +1,11 @@
 package bg.softuni.mobilelele.model.entity;
 
-import bg.softuni.mobilelele.model.enums.Engine;
-import bg.softuni.mobilelele.model.enums.Transmission;
+import bg.softuni.mobilelele.model.entity.enums.Engine;
+import bg.softuni.mobilelele.model.entity.enums.Transmission;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,8 +19,8 @@ public class Offer extends BaseEntity{
     private BigDecimal price;
     private Transmission transmission;
     private Integer year;
-    private LocalDateTime created;
-    private LocalDateTime modified;
+    private Instant created;
+    private Instant modified;
     private Model model;
     private User seller;
 
@@ -36,6 +37,7 @@ public class Offer extends BaseEntity{
     }
 
     @Column
+    @Enumerated(EnumType.STRING)
     public Engine getEngine() {
         return engine;
     }
@@ -72,6 +74,7 @@ public class Offer extends BaseEntity{
     }
 
     @Column
+    @Enumerated(EnumType.STRING)
     public Transmission getTransmission() {
         return transmission;
     }
@@ -90,20 +93,20 @@ public class Offer extends BaseEntity{
     }
 
     @Column
-    public LocalDateTime getCreated() {
+    public Instant getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(Instant created) {
         this.created = created;
     }
 
     @Column
-    public LocalDateTime getModified() {
+    public Instant getModified() {
         return modified;
     }
 
-    public void setModified(LocalDateTime modified) {
+    public void setModified(Instant modified) {
         this.modified = modified;
     }
 
