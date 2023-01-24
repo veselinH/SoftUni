@@ -38,6 +38,9 @@ public class UserLoginController {
                 loginSuccessful);
 
 
+        if (loginSuccessful){
+            return "redirect:/";
+        }
         return "redirect:/users/login";
     }
 
