@@ -4,10 +4,12 @@ import bg.softuni.mobilelele.model.entity.Offer;
 import bg.softuni.mobilelele.model.view.OfferSummaryView;
 import bg.softuni.mobilelele.repository.OfferRepository;
 import bg.softuni.mobilelele.service.OfficeService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class OfficeServiceImpl implements OfficeService {
 
     private final OfferRepository offerRepository;
