@@ -1,5 +1,8 @@
 package bg.softuni.mobilelele.model.binding;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class UserRegisterBindingModel {
 
     private String firstName;
@@ -7,6 +10,8 @@ public class UserRegisterBindingModel {
     private String username;
     private String password;
 
+    @NotNull
+    @Size(min = 2, max = 20)
     public String getFirstName() {
         return firstName;
     }
@@ -16,6 +21,7 @@ public class UserRegisterBindingModel {
         return this;
     }
 
+    @Size(min = 2, max = 20)
     public String getLastName() {
         return lastName;
     }

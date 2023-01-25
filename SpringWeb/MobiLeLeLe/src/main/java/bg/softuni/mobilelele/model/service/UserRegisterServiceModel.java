@@ -26,7 +26,7 @@ public class UserRegisterServiceModel {
     }
 
     public String getUsername() {
-        return username;
+        return username != null ? username.trim() : null;
     }
 
     public UserRegisterServiceModel setUsername(String username) {
