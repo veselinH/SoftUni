@@ -106,6 +106,7 @@ public class DBInit implements CommandLineRunner {
             offer1.setDescription("Used, but well service and in good condition.");
             offer1.setSeller(userRepository.findByUsername("tanya").orElse(null));
             offer1.setImageUrl(modelRepository.findByName("CR-V").getImageUrl());
+            offer1.setCreated(Instant.now());
 
             offer2.setModel(modelRepository.findByName("Movano"));
             offer2.setEngine(Engine.DIESEL);
@@ -116,6 +117,7 @@ public class DBInit implements CommandLineRunner {
             offer2.setDescription("Old, but gold!");
             offer2.setSeller(userRepository.findByUsername("admin").orElse(null));
             offer2.setImageUrl(modelRepository.findByName("Movano").getImageUrl());
+            offer2.setCreated(Instant.now());
 
             offer3.setModel(modelRepository.findByName("Vivaro"));
             offer3.setEngine(Engine.HYBRID);
@@ -126,6 +128,7 @@ public class DBInit implements CommandLineRunner {
             offer3.setDescription("The best in the market");
             offer3.setSeller(userRepository.findByUsername("tanya").orElse(null));
             offer3.setImageUrl(modelRepository.findByName("Vivaro").getImageUrl());
+            offer3.setCreated(Instant.now());
 
             offer4.setModel(modelRepository.findByName("X-ADV"));
             offer4.setEngine(Engine.ELECTRIC);
@@ -136,6 +139,7 @@ public class DBInit implements CommandLineRunner {
             offer4.setDescription("Chicks magnet");
             offer4.setSeller(userRepository.findByUsername("vesko").orElse(null));
             offer4.setImageUrl(modelRepository.findByName("X-ADV").getImageUrl());
+            offer4.setCreated(Instant.now());
 
 
             offerRepository.saveAll(List.of(offer1, offer2, offer3, offer4));
