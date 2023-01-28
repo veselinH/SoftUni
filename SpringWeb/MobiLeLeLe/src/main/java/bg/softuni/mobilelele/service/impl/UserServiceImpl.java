@@ -19,6 +19,7 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static final String ADMIN_USERNAME = "admin";
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final CurrentUser currentUser;
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> usernameOpt = userRepository.findByUsername(userLoginServiceModel.getUsername());
 
+        System.out.println();
         if (usernameOpt.isEmpty()) {
             logout();
             return false;
@@ -46,6 +48,7 @@ public class UserServiceImpl implements UserService {
 
             if (success) {
                 User loggedInUser = usernameOpt.get();
+
                 login(loggedInUser);
             }
 
@@ -79,18 +82,20 @@ public class UserServiceImpl implements UserService {
         login(newUser);
     }
 
-    @Override
-    public boolean isUserNameFree(String username) {
-        return userRepository.findByUsernameIgnoreCase(username)
-                .isEmpty();
-    }
-
     private void login(User user) {
         currentUser
                 .setLoggedIn(true)
                 .setUsername(user.getUsername())
                 .setFirstName(user.getFirstName())
                 .setLastName(user.getLastName());
+
+        user.getRoles().forEach(r -> currentUser.addRole(r.getName()));
+    }
+
+    @Override
+    public boolean isUserNameFree(String username) {
+        return userRepository.findByUsernameIgnoreCase(username)
+                .isEmpty();
     }
 
 

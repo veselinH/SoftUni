@@ -3,6 +3,7 @@ package bg.softuni.mobilelele.web;
 import bg.softuni.mobilelele.model.binding.UserLoginBindingModel;
 import bg.softuni.mobilelele.model.service.UserLoginServiceModel;
 import bg.softuni.mobilelele.service.UserService;
+import bg.softuni.mobilelele.user.CurrentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,11 @@ public class UserLoginController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserLoginController.class);
     private final UserService userService;
+    private final CurrentUser currentUser;
 
-    public UserLoginController(UserService userService) {
+    public UserLoginController(UserService userService, CurrentUser currentUser) {
         this.userService = userService;
+        this.currentUser = currentUser;
     }
 
     @GetMapping("/users/login")
@@ -32,6 +35,7 @@ public class UserLoginController {
                         .setUsername(userLoginBindingModel.getUsername())
                         .setRawPassword(userLoginBindingModel.getPassword())
         );
+
 
         LOGGER.info("User tried to login. User with name {} tried to login. Success = {}?",
                 userLoginBindingModel.getUsername(),

@@ -47,15 +47,9 @@ public class UserRegistrationController {
         UserRegisterServiceModel serviceMode =
                 modelMapper.map(userRegisterBindingModel, UserRegisterServiceModel.class);
 
-        if (!userService.isUserNameFree(userRegisterBindingModel.getUsername())) {
-            // TODO - add to flash attributes
-            redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
-            redirectAttributes.addFlashAttribute("userNameOccupied", true);
-            return "redirect:/users/register";
-        } else {
-            userService.registerAndLoginUser(serviceMode);
-            return "redirect:/";
-        }
+        userService.registerAndLoginUser(serviceMode);
+        return "redirect:/";
+
 
     }
 }

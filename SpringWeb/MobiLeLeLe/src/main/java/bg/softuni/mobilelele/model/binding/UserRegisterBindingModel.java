@@ -1,12 +1,16 @@
 package bg.softuni.mobilelele.model.binding;
 
+import bg.softuni.mobilelele.model.validation.UniqueUserName;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class UserRegisterBindingModel {
 
+    @Size(min = 2, max = 20)
     private String firstName;
     private String lastName;
+
+    @UniqueUserName
     private String username;
     private String password;
 

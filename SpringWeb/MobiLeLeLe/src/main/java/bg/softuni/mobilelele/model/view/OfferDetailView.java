@@ -1,5 +1,6 @@
 package bg.softuni.mobilelele.model.view;
 
+import bg.softuni.mobilelele.model.entity.enums.Engine;
 import bg.softuni.mobilelele.model.entity.enums.Transmission;
 
 import java.math.BigDecimal;
@@ -10,8 +11,8 @@ public class OfferDetailView {
     private Long id;
     private Integer mileage;
     private BigDecimal price;
-    private String engineType;
-    private Transmission transmissionType;
+    private Engine engine;
+    private Transmission transmission;
     private Instant created;
     private Instant modified;
     private String seller;
@@ -20,6 +21,8 @@ public class OfferDetailView {
     private String model;
 
     private String imageUrl;
+
+    private String description;
 
     public Long getId() {
         return id;
@@ -48,21 +51,21 @@ public class OfferDetailView {
         return this;
     }
 
-    public String getEngineType() {
-        return engineType;
+    public Engine getEngine() {
+        return engine;
     }
 
-    public OfferDetailView setEngineType(String engineType) {
-        this.engineType = engineType;
+    public OfferDetailView setEngine(Engine engine) {
+        this.engine = engine;
         return this;
     }
 
-    public Transmission getTransmissionType() {
-        return transmissionType;
+    public Transmission getTransmission() {
+        return transmission;
     }
 
-    public OfferDetailView setTransmissionType(Transmission transmissionType) {
-        this.transmissionType = transmissionType;
+    public OfferDetailView setTransmission(Transmission transmission) {
+        this.transmission = transmission;
         return this;
     }
 
@@ -126,6 +129,15 @@ public class OfferDetailView {
 
     public OfferDetailView setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public OfferDetailView setDescription(String description) {
+        this.description = description;
         return this;
     }
 }

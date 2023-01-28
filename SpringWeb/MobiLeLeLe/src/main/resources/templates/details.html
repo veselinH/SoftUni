@@ -29,9 +29,9 @@
                 <li class="list-group-item">
                     <div class="card-text"><span th:text="|Mileage: *{mileage}|">• Mileage</span></div>
                     <div class="card-text"><span th:text="|Price: *{price}|">• Price</span></div>
-                    <div class="card-text"><span th:text="|Engine type: *{engineType}|">• Engine type</span></div>
+                    <div class="card-text"><span th:text="|Engine type: *{engine}|">• Engine type</span></div>
                     <div class="card-text"><span
-                            th:text="|Transmission type: *{transmissionType}|">• Transmission type</span></div>
+                            th:text="|Transmission type: *{transmission}|">• Transmission type</span></div>
                     <div class="card-text"><span th:text="|Offer created: *{created}|">• Offer created</span></div>
                     <div class="card-text"><span th:text="|Offer modified: *{modified}|">• Offer modified</span></div>
                     <div class="card-text"><span th:text="|Seller: *{seller}|">• Seller - First and Last name</span>
@@ -39,6 +39,7 @@
                 </li>
             </ul>
             <div class="card-body">
+                <!--   th:if="${isAdmin} or ${isCreator}"-->
                 <div class="row">
                     <a class="btn btn-link" th:href="@{/offers/{id}/update(id=*{id})}">Update</a>
                     <form th:action="@{/offers/{id}(id=*{id})}" th:method="delete">

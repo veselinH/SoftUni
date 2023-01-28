@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "offers")
-public class Offer extends BaseEntity{
+public class Offer extends BaseEntity {
 
     private String description;
     private Engine engine;
@@ -32,8 +32,9 @@ public class Offer extends BaseEntity{
         return description;
     }
 
-    public void setDescription(String description) {
+    public Offer setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     @Column
@@ -42,8 +43,9 @@ public class Offer extends BaseEntity{
         return engine;
     }
 
-    public void setEngine(Engine engine) {
+    public Offer setEngine(Engine engine) {
         this.engine = engine;
+        return this;
     }
 
     @Column(name = "image_url")
@@ -51,8 +53,9 @@ public class Offer extends BaseEntity{
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public Offer setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
     }
 
     @Column
@@ -60,8 +63,9 @@ public class Offer extends BaseEntity{
         return mileage;
     }
 
-    public void setMileage(Integer mileage) {
+    public Offer setMileage(Integer mileage) {
         this.mileage = mileage;
+        return this;
     }
 
     @Column
@@ -69,8 +73,9 @@ public class Offer extends BaseEntity{
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public Offer setPrice(BigDecimal price) {
         this.price = price;
+        return this;
     }
 
     @Column
@@ -79,8 +84,9 @@ public class Offer extends BaseEntity{
         return transmission;
     }
 
-    public void setTransmission(Transmission transmission) {
+    public Offer setTransmission(Transmission transmission) {
         this.transmission = transmission;
+        return this;
     }
 
     @Column
@@ -88,8 +94,9 @@ public class Offer extends BaseEntity{
         return year;
     }
 
-    public void setYear(Integer year) {
+    public Offer setYear(Integer year) {
         this.year = year;
+        return this;
     }
 
     @Column
@@ -97,8 +104,9 @@ public class Offer extends BaseEntity{
         return created;
     }
 
-    public void setCreated(Instant created) {
+    public Offer setCreated(Instant created) {
         this.created = created;
+        return this;
     }
 
     @Column
@@ -106,8 +114,9 @@ public class Offer extends BaseEntity{
         return modified;
     }
 
-    public void setModified(Instant modified) {
+    public Offer setModified(Instant modified) {
         this.modified = modified;
+        return this;
     }
 
     @ManyToOne
@@ -115,8 +124,9 @@ public class Offer extends BaseEntity{
         return model;
     }
 
-    public void setModel(Model model) {
+    public Offer setModel(Model model) {
         this.model = model;
+        return this;
     }
 
     @ManyToOne
@@ -124,7 +134,8 @@ public class Offer extends BaseEntity{
         return seller;
     }
 
-    public void setSeller(User seller) {
+    public Offer setSeller(User seller) {
         this.seller = seller;
+        return this;
     }
 }
