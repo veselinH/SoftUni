@@ -12,8 +12,8 @@ import java.time.LocalDate;
 public class Ship extends BaseEntity{
 
     private String name;
-    private Integer health;
-    private Integer power;
+    private Long health;
+    private Long power;
     private LocalDate created;
     private Category category;
     private User user;
@@ -32,21 +32,21 @@ public class Ship extends BaseEntity{
     }
 
     @Column(nullable = false)
-    public Integer getHealth() {
+    public Long getHealth() {
         return health;
     }
 
-    public Ship setHealth(Integer health) {
+    public Ship setHealth(Long health) {
         this.health = health;
         return this;
     }
 
     @Column(nullable = false)
-    public Integer getPower() {
+    public Long getPower() {
         return power;
     }
 
-    public Ship setPower(Integer power) {
+    public Ship setPower(Long power) {
         this.power = power;
         return this;
     }

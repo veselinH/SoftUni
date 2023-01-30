@@ -1,72 +1,61 @@
-package bg.softuni.battleshipapplication.model.entity;
+package bg.softuni.battleshipapplication.model.service;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import bg.softuni.battleshipapplication.model.entity.Ship;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "users")
-public class User extends BaseEntity{
-
+public class UserServiceModel {
     private String username;
     private String fullName;
     private String password;
     private String email;
     private Set<Ship> ships = new HashSet<>();
 
-    public User() {
+    public UserServiceModel() {
     }
 
-    @Column(unique = true, nullable = false)
     public String getUsername() {
         return username;
     }
 
-    public User setUsername(String username) {
+    public UserServiceModel setUsername(String username) {
         this.username = username;
         return this;
     }
 
-    @Column(nullable = false)
     public String getFullName() {
         return fullName;
     }
 
-    public User setFullName(String fullName) {
+    public UserServiceModel setFullName(String fullName) {
         this.fullName = fullName;
         return this;
     }
 
-    @Column(nullable = false)
     public String getPassword() {
         return password;
     }
 
-    public User setPassword(String password) {
+    public UserServiceModel setPassword(String password) {
         this.password = password;
         return this;
     }
 
-    @Column(nullable = false, unique = true)
     public String getEmail() {
         return email;
     }
 
-    public User setEmail(String email) {
+    public UserServiceModel setEmail(String email) {
         this.email = email;
         return this;
     }
 
-    @OneToMany(mappedBy = "user")
     public Set<Ship> getShips() {
         return ships;
     }
 
-    public User setShips(Set<Ship> ships) {
+    public UserServiceModel setShips(Set<Ship> ships) {
         this.ships = ships;
         return this;
     }
