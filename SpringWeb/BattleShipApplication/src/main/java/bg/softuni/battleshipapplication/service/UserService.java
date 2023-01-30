@@ -9,4 +9,8 @@ public interface UserService {
     User findUserByUsername(String username);
 
     void registerUser(UserServiceModel userServiceModel);
+
+    UserServiceModel findUserByUsernameAndPassword(UserServiceModel userServiceModel);
+
+    void loginUser(Long id, String password);
 }

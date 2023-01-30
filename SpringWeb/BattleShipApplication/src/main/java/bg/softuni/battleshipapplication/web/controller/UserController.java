@@ -1,11 +1,13 @@
 package bg.softuni.battleshipapplication.web.controller;
 
+import bg.softuni.battleshipapplication.model.binding.UserLoginBindingModel;
 import bg.softuni.battleshipapplication.model.binding.UserRegisterBindingModel;
 import bg.softuni.battleshipapplication.model.service.UserServiceModel;
 import bg.softuni.battleshipapplication.service.UserService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +33,49 @@ public class UserController {
         return new UserRegisterBindingModel();
     }
 
+    @ModelAttribute
+    public UserLoginBindingModel userLoginBindingModel() {
+        return new UserLoginBindingModel();
+    }
+
     @GetMapping("/login")
-    public String login() {
+    public String login(Model model) {
+
+        model.addAttribute("correctCredentials", true);
 
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginConfirm(@Valid UserLoginBindingModel userLoginBindingModel,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes
+                    .addFlashAttribute("userLoginBindingModel", userLoginBindingModel)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userLoginBindingModel", bindingResult);
+
+            return "redirect:login";
+        }
+
+        UserServiceModel userServiceModel =
+                userService
+                        .findUserByUsernameAndPassword(modelMapper.map(userLoginBindingModel, UserServiceModel.class));
+
+        if (userServiceModel == null) {
+            redirectAttributes
+                    .addFlashAttribute("correctCredentials", false)
+                    .addFlashAttribute("userLoginBindingModel", userLoginBindingModel)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userLoginBindingModel", bindingResult);
+
+            return "redirect:login";
+        }
+
+
+        userService.loginUser(userServiceModel.getId(), userServiceModel.getPassword());
+
+        return "redirect:/";
     }
 
     @GetMapping("/register")

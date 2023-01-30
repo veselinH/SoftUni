@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class UserServiceModel {
+
+    private Long id;
     private String username;
     private String fullName;
     private String password;
@@ -13,6 +15,15 @@ public class UserServiceModel {
     private Set<Ship> ships = new HashSet<>();
 
     public UserServiceModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public UserServiceModel setId(Long id) {
+        this.id = id;
+        return this;
     }
 
     public String getUsername() {
