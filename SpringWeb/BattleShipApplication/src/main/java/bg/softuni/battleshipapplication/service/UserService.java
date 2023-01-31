@@ -13,4 +13,6 @@ public interface UserService {
     UserServiceModel findUserByUsernameAndPassword(UserServiceModel userServiceModel);
 
     void loginUser(Long id, String password);
+
+    void logout();
 }

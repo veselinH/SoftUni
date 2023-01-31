@@ -73,4 +73,9 @@ public class UserServiceImpl implements UserService {
     public void loginUser(Long id, String password) {
         currentUser.setId(id).setUsername(password);
     }
+
+    @Override
+    public void logout() {
+        currentUser.setId(null).setUsername(null);
+    }
 }

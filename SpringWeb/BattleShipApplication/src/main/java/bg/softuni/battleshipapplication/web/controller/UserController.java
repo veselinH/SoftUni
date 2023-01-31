@@ -67,7 +67,8 @@ public class UserController {
             redirectAttributes
                     .addFlashAttribute("correctCredentials", false)
                     .addFlashAttribute("userLoginBindingModel", userLoginBindingModel)
-                    .addFlashAttribute("org.springframework.validation.BindingResult.userLoginBindingModel", bindingResult);
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userLoginBindingModel",
+                            bindingResult);
 
             return "redirect:login";
         }
@@ -109,5 +110,14 @@ public class UserController {
         userService.registerUser(modelMapper.map(userRegisterBindingModel, UserServiceModel.class));
 
         return "redirect:login";
+    }
+
+
+    @GetMapping("/logout")
+    public String logoutUser() {
+
+        userService.logout();
+
+        return "redirect:/";
     }
 }
